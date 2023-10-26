@@ -14,6 +14,8 @@ async def get_data() -> Data:
     """
     Get Data
     """
+    undefined_variable
+
     return Data(item="devops")
 
 
