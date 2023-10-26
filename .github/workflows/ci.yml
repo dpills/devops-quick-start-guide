@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install poetry
+        run: pipx install poetry
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+      - name: Install Dependencies
+        run: poetry install --no-root --no-interaction --no-cache
+
+      - name: Formatting
+        run: poetry run black --check app
+      - name: Linting
+        run: poetry run ruff --output-format=github app
+      - name: Static Type Checking
+        run: poetry run mypy app
