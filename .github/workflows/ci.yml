@@ -78,3 +78,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: dpills/devops-quick-start-guide:${{ github.ref_name }}
+
+  deploy:
+    runs-on: self-hosted
+    needs:
+      - build
+    if: github.ref_type == 'tag'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Update Deployment
+        run: kubectl set image deployment/devops-quick-start devops-quick-start=dpills/devops-quick-start:${{ github.ref_name }}
