@@ -88,4 +88,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Update Deployment
-        run: kubectl set image deployment/devops-quick-start devops-quick-start=dpills/devops-quick-start:${{ github.ref_name }}
+        run: kubectl set image deployment/devops-quick-start-guide devops-quick-start-guide=dpills/devops-quick-start-guide:${{ github.ref_name }}
