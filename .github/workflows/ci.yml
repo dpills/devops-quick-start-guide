@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
           cache: "poetry"
       - name: Install Dependencies
-        run: poetry install --no-root --no-interaction --no-cache
+        run: poetry install --no-root --no-interaction
 
       - name: Formatting
         run: poetry run black --check app
@@ -40,7 +40,7 @@ jobs:
           python-version: "3.11"
           cache: "poetry"
       - name: Install Dependencies
-        run: poetry install --no-root --no-interaction --no-cache
+        run: poetry install --no-root --no-interaction
 
       - name: Test & Coverage
         run: poetry run coverage run --source ./app -m pytest
